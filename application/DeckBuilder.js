@@ -6,7 +6,13 @@ function DeckBuilder() {
         build()  {
             if (_builderContainsRequiredProperties()) {
                 if (this.validator(this.deckData)) {
-                    return new DeckClass(this.deckData);
+                    try {
+                        return new DeckClass(this.deckData);
+                    }
+
+                    catch(e) {
+                        throw 'Unexpected error: ' + e;
+                    }
                 }
 
                 throw 'deckData is invalid';
