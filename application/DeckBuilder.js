@@ -1,11 +1,18 @@
 function DeckBuilder() {
     return {
+        _builderContainsRequiredProperties() {
+            return Boolean(this.DeckClass && this.deckData && this.validator);
+        },
         build()  {
-            if (this.validator(this.deckData)) {
-                return new DeckClass(this.deckData);
+            if (_builderContainsRequiredProperties()) {
+                if (this.validator(this.deckData)) {
+                    return new DeckClass(this.deckData);
+                }
+
+                throw 'deckData is invalid';
             }
 
-            throw 'deckData is invalid';
+            throw 'DeckBuilder requires a DeckClass, deckData, and validator to build';
         },
         fromClass(DeckClass) {
             this.DeckClass = DeckClass;
