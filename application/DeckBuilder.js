@@ -1,4 +1,4 @@
-function DeckBuilder() {
+export function DeckBuilder() {
     return {
         _builderContainsRequiredProperties() {
             return Boolean(this.DeckClass && this.deckData && this.validator);
